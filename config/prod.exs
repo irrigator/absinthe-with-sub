@@ -24,6 +24,7 @@ use Mix.Config
 
 config :plate_slate, PlateSlateWeb.Endpoint,
   load_from_system_env: true,
+  check_origin: false,
   # http: [port: {:system, "PORT"}], # Uncomment this line if you are running Phoenix 1.2
   server: true, # Without this line, your app will not start the web server!
   secret_key_base: "${SECRET_KEY_BASE}",
