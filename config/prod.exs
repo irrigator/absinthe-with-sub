@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Craft GraphQL APIs in Elixir with Absinthe",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/wwgraphql for more book information.
-#---
+# ---
 use Mix.Config
 
 # For production, we often load configuration from external
@@ -26,7 +26,8 @@ config :plate_slate, PlateSlateWeb.Endpoint,
   load_from_system_env: true,
   check_origin: false,
   # http: [port: {:system, "PORT"}], # Uncomment this line if you are running Phoenix 1.2
-  server: true, # Without this line, your app will not start the web server!
+  # Without this line, your app will not start the web server!
+  server: true,
   secret_key_base: "${SECRET_KEY_BASE}",
   url: [host: "lotuseater.club", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
@@ -36,7 +37,8 @@ config :plate_slate, PlateSlate.Repo,
   url: "${DATABASE_URL}",
   database: "",
   ssl: true,
-  pool_size: 1 # Free tier db only allows 1 connection
+  # Free tier db only allows 1 connection
+  pool_size: 1
 
 # Do not print debug messages in production
 config :logger, level: :info

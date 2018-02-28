@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Craft GraphQL APIs in Elixir with Absinthe",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/wwgraphql for more book information.
-#---
+# ---
 defmodule PlateSlateWeb.Resolvers.Menu do
   alias PlateSlate.Menu
 
@@ -26,6 +26,7 @@ defmodule PlateSlateWeb.Resolvers.Menu do
     case Menu.create_item(params) do
       {:error, changeset} ->
         {:ok, %{errors: transform_errors(changeset)}}
+
       {:ok, menu_item} ->
         {:ok, %{menu_item: menu_item}}
     end
@@ -34,17 +35,15 @@ defmodule PlateSlateWeb.Resolvers.Menu do
   defp transform_errors(changeset) do
     changeset
     |> Ecto.Changeset.traverse_errors(&format_error/1)
-    |> Enum.map(fn
-      {key, value} ->
-        %{key: key, message: value}
+    |> Enum.map(fn {key, value} ->
+      %{key: key, message: value}
     end)
   end
 
-  @spec format_error(Ecto.Changeset.error) :: String.t
+  @spec format_error(Ecto.Changeset.error()) :: String.t()
   defp format_error({msg, opts}) do
     Enum.reduce(opts, msg, fn {key, value}, acc ->
       String.replace(acc, "%{#{key}}", to_string(value))
     end)
   end
-
 end
